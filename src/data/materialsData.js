@@ -1,7 +1,22 @@
 const _apiUrl = "/api/materials";
 
-export const getMaterials = () => {
-  return fetch(_apiUrl).then((r) => r.json());
+export const getMaterials = (materialTypeId, genreId) => {
+  if (materialTypeId != null && genreId != null)
+  {
+    return fetch(`${_apiUrl}/?${materialTypeId}/?${genreId}`).then((r) => r.json());
+  }
+  else if (materialTypeId != null && genreId == null)
+  {
+    return fetch(`${_apiUrl}/?${materialTypeId}`).then((r) => r.json());
+  }
+  else if (materialTypeId == null && genreId != null)
+  {
+    return fetch(`${_apiUrl}/?${genreId}`).then((r) => r.json());
+  }
+  else
+  {
+    return fetch(_apiUrl).then((r) => r.json());
+  }
 };
 
 //export a function here that gets a ticket by id
@@ -22,4 +37,8 @@ export const removeMaterialFromCirculation = (id) => {
     method: "PUT",
     headers: {"Content-Type": "application/json"}
   });
+};
+
+export const getAvailableMaterials = () => {
+  return fetch(`${_apiUrl}/available`).then((res) => res.json());
 };

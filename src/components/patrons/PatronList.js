@@ -44,9 +44,11 @@ export default function PatronList() {
                             <td>
                                 <Link to={`${p.id}`}>Details</Link>
                             </td>
-                            <td>{p.isActive ? <Button 
+                            <td>{p.isActive 
+                            ? <Button 
                             value={p.id}
-                            onClick={handleDeactivate}>Deactivate</Button> : null}</td>
+                            onClick={handleDeactivate}>Deactivate</Button> 
+                            : null}</td>
                         </tr>
                     ))}
                 </tbody>

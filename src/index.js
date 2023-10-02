@@ -11,6 +11,9 @@ import PatronList from "./components/patrons/PatronList.js";
 import PatronDetails from "./components/patrons/PatronDetails.js";
 import EditPatron from "./components/patrons/EditPatron.js";
 import CheckoutsList from "./components/checkouts/CheckoutsList.js";
+import BrowseAvailable from "./components/checkouts/BrowseAvailable.js";
+import CheckoutForm from "./components/checkouts/CheckoutForm.js";
+import OverdueList from "./components/checkouts/OverdueList.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,6 +31,11 @@ root.render(
           <Route path=":id/edit" element={<EditPatron />} />
         </Route>
         <Route path="checkouts" element={<CheckoutsList />} />
+        <Route path="overdueCheckouts" element={<OverdueList />} />
+        <Route path="browse">
+          <Route index element={<BrowseAvailable />} />
+          <Route path=":id" element={<CheckoutForm />} />
+        </Route> 
       </Route>
     </Routes>
   </BrowserRouter>,

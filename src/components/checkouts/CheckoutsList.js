@@ -1,5 +1,5 @@
-import { Table } from "reactstrap";
-import { getCheckouts } from "../../data/checkoutsData.js";
+import { Button, Table } from "reactstrap";
+import { getCheckouts, returnCheckout } from "../../data/checkoutsData.js";
 import { useEffect, useState } from "react";
 
 export default function CheckoutsList() {
@@ -8,6 +8,13 @@ export default function CheckoutsList() {
     useEffect(() => {
         getCheckouts().then(setCheckouts);
     }, []);
+
+    const handleReturn = (e) => {
+        e.preventDefault();
+        returnCheckout(e.target.value).then(() => {
+            getCheckouts().then(setCheckouts);
+        });
+    };
 
     return (
         <div className="container">
@@ -30,10 +37,17 @@ export default function CheckoutsList() {
                     <td>{co.material.materialName}</td>
                     <td>{co.checkoutDate?.split("T")[0]}</td>
                     <td>{co.returnDate?.split("T")[0]}</td>
+                    <td>{!co.returnDate 
+                    ? <Button 
+                    value={co.id}
+                    onClick={handleReturn}>
+                        Return Book
+                    </Button>
+                    : null }</td>
                 </tr>
             ))}
                 </tbody>
             </Table>
         </div>
     )
-}
+};

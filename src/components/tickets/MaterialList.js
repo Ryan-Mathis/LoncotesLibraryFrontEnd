@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Table } from "reactstrap";
+import { Button, FormGroup, Input, Table } from "reactstrap";
 import { getMaterials, removeMaterialFromCirculation } from "../../data/materialsData";
 import { Link } from "react-router-dom";
 
@@ -22,6 +22,15 @@ export default function MaterialList() {
       <div className="sub-menu bg-light">
         <h4>Materials</h4>
         <Link to="/materials/create">Add</Link>
+        {/* <FormGroup>
+          <Label for="filter">Filter by:</Label>
+        <Input
+        type="select">
+          <option>
+
+          </option>
+        </Input>
+        </FormGroup> */}
       </div>
       <Table>
         <thead>
