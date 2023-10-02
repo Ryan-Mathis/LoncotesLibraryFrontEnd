@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getPatrons } from "../../data/patronsData.js";
 import { Table } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export default function PatronList() {
     const [patrons, setPatrons] = useState([]);
@@ -17,6 +18,7 @@ export default function PatronList() {
             <Table>
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Address</th>
                         <th>Email</th>
@@ -31,6 +33,9 @@ export default function PatronList() {
                             <td>{p.address}</td>
                             <td>{p.email}</td>
                             <td>{p.isActive ? "Active" : "Inactive"}</td>
+                            <td>
+                                <Link to={`${p.id}`}>Details</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

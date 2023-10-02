@@ -8,6 +8,8 @@ import MaterialList from "./components/tickets/MaterialList";
 import MaterialDetails from "./components/tickets/MaterialDetails";
 import CreateMaterial from "./components/tickets/CreateMaterial";
 import PatronList from "./components/patrons/PatronList.js";
+import PatronDetails from "./components/patrons/PatronDetails.js";
+import EditPatron from "./components/patrons/EditPatron.js";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -21,6 +23,8 @@ root.render(
         </Route>
         <Route path="patrons">
           <Route index element={<PatronList />} />
+          <Route path=":id" element={<PatronDetails />} />
+          <Route path=":id/edit" element={<EditPatron />} />
         </Route>
       </Route>
     </Routes>
