@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Table } from "reactstrap";
-import { getMaterials } from "../../data/materialsData";
+import { Button, Table } from "reactstrap";
+import { getMaterials, removeMaterialFromCirculation } from "../../data/materialsData";
 import { Link } from "react-router-dom";
 
 export default function MaterialList() {
@@ -9,6 +9,13 @@ export default function MaterialList() {
   useEffect(() => {
     getMaterials().then(setMaterials);
   }, []);
+
+  const handleRemoveFromCirculation = (e) => {
+    e.preventDefault();
+    removeMaterialFromCirculation(e.target.value).then(() => {
+      getMaterials().then(setMaterials)
+    });
+    };
 
   return (
     <div className="container">
@@ -35,6 +42,10 @@ export default function MaterialList() {
               <td>{m.genre.name}</td>
               <td>
                 <Link to={`${m.id}`}>Details</Link>
+              </td>
+              <td>
+                <Button value={m.id}
+                onClick={handleRemoveFromCirculation}>Remove From Circulation</Button>
               </td>
             </tr>
           ))}

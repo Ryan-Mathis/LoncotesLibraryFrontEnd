@@ -18,3 +18,10 @@ export const updatePatron = (id, patron) => {
         return res.json();
     });
 };
+
+export const deactivatePatron = (id) => {
+    return fetch(`${_apiUrl}/${id}/deactivate`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"}
+    });
+};
